@@ -21,6 +21,6 @@ export default class User extends Password(Base) {
         return this.query()
           .where('id', 'IN', getAccessibleBananaIds);
       }
-    }
+    };
   }
 }

@@ -1,7 +1,19 @@
 {
   "compilerOptions": {
-    "lib": [
-      "es2015"
+    "outDir": "build",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "typeRoots": [
+      "./typings",
+      "./node_modules/@types"
     ]
-  }
+  },
+  "include": [
+    "**/**.ts",
+    "test/**/**.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
