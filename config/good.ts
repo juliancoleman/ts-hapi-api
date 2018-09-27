@@ -1,5 +1,5 @@
 export default {
-  register: import("good"),
+  plugin: require("good"),
   options: {
     ops: { interval: 1000 },
     reporters: {

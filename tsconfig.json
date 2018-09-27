@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     "outDir": "build",
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es2018",
+    "module": "none",
     "moduleResolution": "node",
+    "strictNullChecks": true,
     "typeRoots": [
+      "./node_modules/@types",
       "./typings",
-      "./node_modules/@types"
     ]
   },
   "include": [

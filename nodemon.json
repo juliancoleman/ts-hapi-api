@@ -1,0 +1,13 @@
+{
+  "ignore": [
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    ".git",
+    "node_modules"
+  ],
+  "watch": [
+    "."
+  ],
+  "exec": "ts-node ./index.ts",
+  "ext": "ts"
+}
