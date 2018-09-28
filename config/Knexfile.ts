@@ -1,4 +1,4 @@
-import { Config, PoolConfig, MigratorConfig, ConnectionConfig } from 'knex';
+import { Config, PoolConfig, MigratorConfig, ConnectionConfig } from "knex";
 import * as dotenv from "dotenv";
 import * as pg from "pg";
 

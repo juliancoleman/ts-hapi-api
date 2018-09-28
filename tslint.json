@@ -2,5 +2,13 @@
   "extends": "tslint-config-airbnb",
   "rules": {
     "quotemark": [true, "double"],
+    "semicolon": true,
+    "trailing-comma": [true, {
+      "singleline": "never",
+      "multiline": {
+        "functions": "never"
+      }
+    }],
+    "import-name": false
   }
 }

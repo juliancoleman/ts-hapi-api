@@ -8,8 +8,9 @@ import { defaultTo } from "ramda";
 import good from "./config/good";
 import Knexfile from "./config/Knexfile";
 
-import { algorithm, validateToken as validate } from './lib/authentication/service';
+import AuthenticationService from "./lib/authentication/service";
 
+const { algorithm, validateToken: validate } = AuthenticationService;
 
 // Initialize connection to database
 const knex = Knex(Knexfile);
@@ -31,8 +32,8 @@ async function startServer() {
     ])
     .then(() => {
       server.auth.strategy("jwt", "jwt", {
-        key: process.env.KEY,
         validate,
+        key: process.env.KEY,
         verifyOptions: { algorithms: [algorithm] },
       });
 
