@@ -1,14 +1,13 @@
 // tslint:disable:variable-name
-import * as Base from "./base";
+// import * as Password from "objection-password";
+import Base from "./base";
 
 const Password = require("objection-password")();
 
 // import { QueryBuilder } from "objection";
 
 export default class User extends Password(Base) {
-  static tableName() {
-    return "users";
-  }
+  static tableName = "users";
 
   public readonly id: number;
   public firstName: string;

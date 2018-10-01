@@ -42,4 +42,4 @@ EXPOSE 8912
 
 # Build and run the server
 # RUN yarn build
-# CMD yarn start
+CMD ["yarn", "start"]

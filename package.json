@@ -9,7 +9,8 @@
     "dev": "nodemon",
     "build": "tsc",
     "lint": "echo 'command not implemented'",
-    "start": "node build/src/server.js",
+    "start": "nodemon",
+    "stoppit": "lsof -n -i4TCP:3000 | grep LISTEN | awk '{ print $2 }' | xargs kill",
     "test": "echo 'command not implemented'",
     "test:ci": "echo 'command not implemented'"
   },

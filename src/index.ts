@@ -44,7 +44,7 @@ async function startServer() {
 
     await server.start();
 
-    console.info(`Server listening on port ${server.info.port}`);
+    console.info(`Server listening on port ${JSON.stringify(server.info)}`);
   } catch (e) {
     console.error(e);
   }

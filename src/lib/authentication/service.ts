@@ -41,7 +41,7 @@ export default class AuthenticationService {
     return AuthenticationService.signToken(user);
   }
 
-  static validateToken = async (decodedToken, { accountId }): Promise<IAuthenticationIsValid> => {
+  static validateToken = async ({ accountId }): Promise<IAuthenticationIsValid> => {
     const user = await User
       .query()
       .findById(accountId);
@@ -63,7 +63,7 @@ export default class AuthenticationService {
       .verifyPassword(password)
       .then((isValid) => {
         if (!isValid) {
-          throw new Error("Invalid email or password"); // throw a more appropriate error with the proper code
+          throw new Error("Invalid email or password"); // throw a more appropriate error with the proper status code
         }
 
         return user;
