@@ -44,7 +44,12 @@ async function startServer() {
 
     await server.start();
 
-    console.info(`Server listening on port ${JSON.stringify(server.info)}`);
+    console.info(`Server listening at ${server.info.uri}`);
+
+    if (server.info.port !== process.env.PORT) {
+      const yellow = "\x1b[33m";
+      console.warn(`${yellow}API is running on the default port.`);
+    }
   } catch (e) {
     console.error(e);
   }
