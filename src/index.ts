@@ -33,7 +33,7 @@ async function startServer() {
     .then(() => {
       server.auth.strategy("jwt", "jwt", {
         validate,
-        key: process.env.KEY,
+        key: process.env.JWT_KEY,
         verifyOptions: { algorithms: [algorithm] },
       });
 
@@ -44,11 +44,11 @@ async function startServer() {
 
     await server.start();
 
-    console.info(`Server listening at ${server.info.uri}`);
+    console.info(`Server listening at ${server.info.uri}\n`);
 
     if (server.info.port !== process.env.PORT) {
       const yellow = "\x1b[33m";
-      console.warn(`${yellow}API is running on the default port.`);
+      console.warn(yellow, " API is running on the default port.\n");
     }
   } catch (e) {
     console.error(e);
