@@ -1,8 +1,14 @@
 // tslint:disable:max-line-length
 import * as jwt from "jsonwebtoken";
 
+import User from "../../models/user";
+
 interface IAuthenticationIsValid {
   isValid: boolean;
+}
+
+interface IDecodedToken {
+  accountId: number;
 }
 
 export default class AuthenticationService {
@@ -12,29 +18,55 @@ export default class AuthenticationService {
   // in `refreshToken`, which must return a valid `accountId`.
   static signToken = ({ id: accountId }): string => {
     const expiresIn: string = "7d";
+    const { algorithm } = AuthenticationService;
 
     return jwt.sign(
       { accountId },
-      process.env.JWT_KEY as jwt.Secret,
-      { expiresIn, algorithm: AuthenticationService.algorithm }
+      (process.env.JWT_KEY as jwt.Secret),
+      { expiresIn, algorithm }
     );
   }
 
-  // export async function refreshToken(token = "") {
-  //   const decodedToken = await jwt.verify(token, process.env.JWT_KEY);
+  static refreshToken = async (token = "") => {
+    const decodedToken = await jwt.verify(token, process.env.JWT_KEY as string);
 
-  //   if (!decodedToken) { return null; }
+    if (!decodedToken) { return null; }
 
-  //   const { accountId: id } = decodedToken;
-  // }
+    const { accountId } = decodedToken as IDecodedToken;
+    const user = await User // all model-returns need valid types other than `any`
+      .query()
+      .findById(accountId)
+      .throwIfNotFound();
 
-  static validateToken = async (decodedToken, { accountId: id }): Promise<IAuthenticationIsValid> => {
-    // TODO: convert the following to TS/Hapi 17
-    // https://github.com/juliancoleman/js-hapi-api/blob/master/lib/authentication/service.js#L29-L49
+    return AuthenticationService.signToken(user);
+  }
+
+  static validateToken = async (decodedToken, { accountId }): Promise<IAuthenticationIsValid> => {
+    const user = await User
+      .query()
+      .findById(accountId);
+
+    if (!user) {
+      return ({ isValid: false });
+    }
+
     return ({ isValid: true });
   }
 
   static validateCredentials = async ({ email_address = "", password = "" }) => {
+    const user = await User
+      .query()
+      .where({ email_address })
+      .throwIfNotFound();
 
+    return user
+      .verifyPassword(password)
+      .then((isValid) => {
+        if (!isValid) {
+          throw new Error("Invalid email or password"); // throw a more appropriate error with the proper code
+        }
+
+        return user;
+      });
   }
 }

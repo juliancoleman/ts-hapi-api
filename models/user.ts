@@ -1,26 +1,32 @@
-import * as Password from 'objection-password';
-import * as Base from './base';
+// tslint:disable:variable-name
+import * as Base from "./base";
 
-import { QueryBuilder } from 'objection';
+const Password = require("objection-password")();
+
+// import { QueryBuilder } from "objection";
 
 export default class User extends Password(Base) {
   static tableName() {
-    return 'users';
+    return "users";
   }
 
-  static QueryBuilder() {
-    return class<T> extends QueryBuilder<T> {
-      authorize(user) {
-        const getAccessibleBananaIds = builder => builder
-          .select('id')
-          .from('')
-          .innerJoin('', '')
-          .innerJoin('users', '')
-          .where('user.id', user.id);
+  public readonly id: number;
+  public firstName: string;
+  public lastName: string;
 
-        return this.query()
-          .where('id', 'IN', getAccessibleBananaIds);
-      }
-    };
-  }
+  // static QueryBuilder() {
+  //   return class<T> extends QueryBuilder<T> {
+  //     authorize(user) {
+  //       const getAccessibleBananaIds = builder => builder
+  //         .select("id")
+  //         .from(")
+  //         .innerJoin(", ")
+  //         .innerJoin("users", ")
+  //         .where("user.id", user.id);
+
+  //       return this.query()
+  //         .where("id", "IN", getAccessibleBananaIds);
+  //     }
+  //   };
+  // }
 }
