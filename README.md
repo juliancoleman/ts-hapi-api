@@ -53,3 +53,11 @@ elsewhere, consider its name to be literal (e.g.
 the name with the validator you are attempting to utilize
 (e.g. `get.ts`, `put.ts`, `post.ts`, etc.) for the
 controller you're bootstrapping to an endpoint.
+
+The only exception to the naming convention is this: there
+is no authentication controller of any kind, but the
+`sessions` controller is the bridge to authentication. So,
+why put the authentication service alongside other core
+services when this isn't being used? Think of this as
+mostly an internal service that isn't exposed to the
+outside.
