@@ -6,7 +6,7 @@ import { Model } from "objection";
 import { defaultTo } from "ramda";
 
 import good from "./config/good";
-import Knexfile from "./config/Knexfile";
+import * as Knexfile from "./config/Knexfile";
 
 import AuthenticationService from "./lib/authentication/service";
 

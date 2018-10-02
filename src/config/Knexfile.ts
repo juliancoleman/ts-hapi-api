@@ -24,7 +24,7 @@ const connection: Readonly<ConnectionConfig> = {
   database: process.env.DATABASE_NAME as string,
 };
 
-export default<Config> {
+module.exports = <Config> {
   client,
   connection,
   migrations,

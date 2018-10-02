@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "tsc",
+    "knex": "knex --knexfile ./src/config/Knexfile.ts",
     "lint": "echo 'command not implemented'",
     "start": "node build/",
     "stoppit": "lsof -n -i4TCP:3000 | grep LISTEN | awk '{ print $2 }' | xargs kill",
