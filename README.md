@@ -90,7 +90,7 @@ src/
   migrations/        # database migrations, of course
   models/            # model schemas and relation mappings (don't use Objection validation)
   test/              # this directory has been deprecated and will be removed in a later release
-index.ts             # application entry point
+  index.ts           # application entry point
 ```
 
 Replicate this process as many times as needed to add new
