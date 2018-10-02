@@ -6,9 +6,57 @@ In order to use this API, simply fork the repo.
 
 ## Usage
 
+A file with the name `.env` must exist at the project root
+in order to run this project locally, in CI, and in a
+deployed environment. The `.env` must follow the pattern
+below:
+
+```bash
+DATABASE_HOST=127.0.0.1 # sometimes also 0.0.0.0
+DATABASE_USER=postgres # this is usually `$(whoami)` when not using Docker
+DATABASE_PASSWORD=password # this cannot be left empty
+DATABASE_NAME=ts_hapi_api # this can be changed
+JWT_KEY=eggward # obviously change this, but cannot be empty
+```
+
+The database username and password must be decided before
+going on to the next step.
+
+### Locally (without Docker)
+
+Follow the instructions on [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04)
+on how to set up PostgreSQL for our application. For MacOS
+users, simply use Homebrew instead.
+
+From there, run the following command:
+
+```bash
+yarn knex migrate:latest
+```
+
+You can then run the server with `yarn start`, and hit the
+API with some `curl` commands. All available API endpoints
+with sample data will be written at a later time with an
+auto-generating documentation. But in the meantime, just
+take a peek inside the `controllers/` and get to know the
+stack.
+
+<!--
+### Locally (with Docker)
+
+Documentation not written yet
 ```bash
 BRANCH_NAME=your_branch_name docker-compose up -d
 ```
+
+### CI
+
+Documentation not written yet
+
+### Deployments
+
+Documentation not written yet
+-->
 
 ## Features and requirements
 
