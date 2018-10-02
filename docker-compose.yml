@@ -1,4 +1,4 @@
-version: "3.2"
+version: "3.7"
 services:
   web:
     build:
@@ -11,3 +11,4 @@ services:
     command: dockerize -wait tcp://db:5432 -timeout 90s yarn test:ci
   db:
     image: postgres
+network_mode: "host"
