@@ -46,4 +46,10 @@ index.ts             # application entry point
 ```
 
 Replicate this process as many times as needed to add new
-controller methods, validators, models, tables, etc.
+controller methods, validators, models, tables, etc. Any
+file or folder name that does not have a matching name
+elsewhere, consider its name to be literal (e.g.
+`validator.ts` or `service.ts`). For the `verb.ts`, replace
+the name with the validator you are attempting to utilize
+(e.g. `get.ts`, `put.ts`, `post.ts`, etc.) for the
+controller you're bootstrapping to an endpoint.
