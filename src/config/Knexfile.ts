@@ -12,7 +12,7 @@ numberTypes.forEach((type: number) =>
   pg.types.setTypeParser(type, "text", parseFloat)
 );
 
-const client: string = "pg";
+const client: string = "postgresql";
 const pool: Readonly<PoolConfig> = { min: 2, max: 10 };
 const migrations: Readonly<MigratorConfig> = {
   directory: "../migrations",
