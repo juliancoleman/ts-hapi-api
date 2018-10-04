@@ -5,9 +5,11 @@ import * as Knex from "knex";
 import { Model } from "objection";
 import { defaultTo } from "ramda";
 
+// Server configurations
 import good from "./config/good";
 import * as Knexfile from "./config/Knexfile";
 
+// Services
 import AuthenticationService from "./lib/authentication/service";
 
 const { algorithm, validateToken: validate } = AuthenticationService;
@@ -25,6 +27,20 @@ const server = new Hapi.Server({
   routes: { cors: true },
 });
 
+function setServerAuthStrategy_d(server: Hapi.Server) {
+  return (): Hapi.Server => {
+    server.auth.strategy("jwt", "jwt", {
+      validate,
+      key: process.env.JWT_KEY,
+      verifyOptions: { algorithms: [algorithm] },
+    });
+
+    server.auth.default("jwt");
+
+    return server;
+  };
+}
+
 async function startServer() {
   try {
     await server.register([
@@ -32,17 +48,7 @@ async function startServer() {
       hapiRouteAutoloader(`${__dirname}/controllers`),
       good,
     ])
-    .then(() => {
-      server.auth.strategy("jwt", "jwt", {
-        validate,
-        key: process.env.JWT_KEY,
-        verifyOptions: { algorithms: [algorithm] },
-      });
-
-      server.auth.default("jwt");
-
-      return server;
-    });
+    .then(setServerAuthStrategy_d(server));
 
     await server.start();
 

@@ -112,3 +112,14 @@ why put the authentication service alongside other core
 services when this isn't being used? Think of this as
 mostly an internal service that isn't exposed to the
 outside.
+
+### Styleguide
+
+#### `_d`
+
+Any function that ends in `_d` is _destructive_. A simple
+example of this is from `index.ts`, where an abstraction
+was made in order to clean up the code. Because this
+function extends the capability of an instance of the
+`Server` object, I have made a distinction in the name to
+let future engineers know that this function is destructive.
