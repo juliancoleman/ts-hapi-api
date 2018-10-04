@@ -17,6 +17,7 @@ DATABASE_USER=postgres # this is usually `$(whoami)` when not using Docker
 DATABASE_PASSWORD=password # this cannot be left empty
 DATABASE_NAME=ts_hapi_api # this can be changed
 JWT_KEY=eggward # obviously change this, but cannot be empty
+# Do not add a PORT variable to this file.
 ```
 
 The database username and password must be decided before
@@ -41,14 +42,17 @@ auto-generating documentation. But in the meantime, just
 take a peek inside the `controllers/` and get to know the
 stack.
 
-<!--
 ### Locally (with Docker)
 
-Documentation not written yet
 ```bash
-BRANCH_NAME=your_branch_name docker-compose up -d
+# Rebuilds the image every time
+yarn up:b
+
+# Simply starts the services without a rebuild
+yarn up
 ```
 
+<!--
 ### CI
 
 Documentation not written yet

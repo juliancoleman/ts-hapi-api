@@ -1,11 +1,16 @@
 version: "3"
 services:
   api:
-    build: .
+    build:
+      context: .
     ports:
       - "8912:8912"
     volumes:
       - .:/home
-    # command: dockerize -wait tcp://db:5432 -timeout 90s
   db:
     image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "password"
+    restart: always

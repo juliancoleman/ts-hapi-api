@@ -16,10 +16,12 @@ const { algorithm, validateToken: validate } = AuthenticationService;
 const knex = Knex(Knexfile);
 Model.knex(knex);
 
+const DEFAULT_PORT = 3000;
+
 // Create new Hapi server with debug option
 const server = new Hapi.Server({
   debug: false,
-  port: defaultTo(3000, process.env.PORT),
+  port: defaultTo(DEFAULT_PORT, process.env.PORT),
   routes: { cors: true },
 });
 
@@ -46,7 +48,11 @@ async function startServer() {
 
     console.info(`Server listening at ${server.info.uri}\n`);
 
-    if (server.info.port !== process.env.PORT) {
+    if (server.info.port === DEFAULT_PORT) {
+      // This warning does not show when run with Docker or
+      // Compose. Only when running `yarn dev` from project
+      // root.
+
       const yellow = "\x1b[33m";
       console.warn(yellow, " API is running on the default port.\n");
     }
