@@ -41,4 +41,5 @@ EXPOSE 8912
 
 # Build and run the server
 # RUN yarn build
-CMD yarn build && yarn start
+CMD yarn dev
+# CMD yarn build && yarn start

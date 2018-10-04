@@ -18,7 +18,7 @@ const migrations: Readonly<MigratorConfig> = {
   directory: "../migrations",
   disableTransactions: true,
 };
-const connection: string = `postgres://postgres:password@ts-hapi-api_db_1:5432`;
+const connection: string = `postgres://${process.env.DATABSE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_NAME}_db_1:5432`;
 
 module.exports = <Config> {
   client,

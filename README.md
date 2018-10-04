@@ -2,7 +2,8 @@
 
 ## Installation
 
-In order to use this API, simply fork the repo.
+In order to use this API, simply fork the repo, clone it to
+your local machine, and make the necessary changes.
 
 ## Usage
 
@@ -12,9 +13,8 @@ deployed environment. The `.env` must follow the pattern
 below:
 
 ```bash
-DATABASE_HOST=127.0.0.1 # sometimes also 0.0.0.0
 DATABASE_USER=postgres # this is usually `$(whoami)` when not using Docker
-DATABASE_PASSWORD=password # this cannot be left empty
+DATABASE_PASSWORD=password # this cannot be left empty; must reflect environment var set in docker-compose.yml
 DATABASE_NAME=ts_hapi_api # this can be changed
 JWT_KEY=eggward # obviously change this, but cannot be empty
 # Do not add a PORT variable to this file.
