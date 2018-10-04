@@ -1,10 +1,8 @@
 // tslint:disable:variable-name
-// import * as Password from "objection-password";
+import * as ObjectionPassword from "objection-password";
 import Base from "./base";
 
-const Password = require("objection-password")();
-
-// import { QueryBuilder } from "objection";
+const Password = ObjectionPassword();
 
 export default class User extends Password(Base) {
   static tableName = "users";
