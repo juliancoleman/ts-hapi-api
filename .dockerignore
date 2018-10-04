@@ -5,7 +5,7 @@ test/
 
 # config files
 .editorconfig
-.env
+# .env
 .git
 .gitignore
 .nvmrc # Node version already specified in the Dockerfile
