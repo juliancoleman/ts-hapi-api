@@ -41,6 +41,18 @@ function setServerAuthStrategy_d(server: Hapi.Server) {
   };
 }
 
+function warnOnDefaultPort(): void {
+  const yellow = "\x1b[33m";
+
+  if (server.info.port === DEFAULT_PORT) {
+    // This warning does not show when run with Docker or
+    // Compose. Only when running `yarn dev` from project
+    // root.
+
+    console.warn(yellow, " API is running on the default port.\n");
+  }
+}
+
 async function startServer() {
   try {
     await server.register([
@@ -53,15 +65,7 @@ async function startServer() {
     await server.start();
 
     console.info(`Server listening at ${server.info.uri}\n`);
-
-    if (server.info.port === DEFAULT_PORT) {
-      // This warning does not show when run with Docker or
-      // Compose. Only when running `yarn dev` from project
-      // root.
-
-      const yellow = "\x1b[33m";
-      console.warn(yellow, " API is running on the default port.\n");
-    }
+    warnOnDefaultPort();
   } catch (e) {
     console.error(e);
   }
