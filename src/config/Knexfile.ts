@@ -1,10 +1,7 @@
 // tslint:disable:max-line-length
 
 import { Config, PoolConfig, MigratorConfig } from "knex";
-import * as dotenv from "dotenv";
 import * as pg from "pg";
-
-dotenv.config();
 
 // Parse stringified BIGINTs from Postgres
 const numberTypes: number[] = [700, 701, 1700, 20, 20, 1021, 1022, 1231];
