@@ -1,14 +1,11 @@
-version: "3.7"
+version: "3"
 services:
-  web:
-    build:
-      context: .
-      cache_from:
-      - juliancoleman/ts-hapi-api:$BRANCH_NAME
-    image: juliancoleman/ts-hapi-api:$BRANCH_NAME
-    external_links:
-    - db
-    command: dockerize -wait tcp://db:5432 -timeout 90s yarn test:ci
+  api:
+    build: .
+    ports:
+      - "8912:8912"
+    volumes:
+      - .:/home
+    # command: dockerize -wait tcp://db:5432 -timeout 90s
   db:
-    image: postgres
-network_mode: "host"
+    image: "postgres"

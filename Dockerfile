@@ -36,10 +36,10 @@ RUN yarn --pure-lockfile
 # application.
 ENV NODE_ENV=production
 ENV PORT=8912
-ENV SEMAPHORE="true"
+ENV POSTGRES_PASSWORD=password
 
 EXPOSE 8912
 
 # Build and run the server
 # RUN yarn build
-CMD ["yarn", "start"]
+CMD ["yarn", "dev"]
