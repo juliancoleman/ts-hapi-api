@@ -41,15 +41,11 @@ function setServerAuthStrategy_d(server: Hapi.Server) {
   };
 }
 
+// This warning does not show when run with Docker or
+// Compose. Only when running `yarn dev` from project root.
 function warnOnDefaultPort(): void {
-  const yellow = "\x1b[33m";
-
   if (server.info.port === DEFAULT_PORT) {
-    // This warning does not show when run with Docker or
-    // Compose. Only when running `yarn dev` from project
-    // root.
-
-    console.warn(yellow, " API is running on the default port.\n");
+    console.warn("\x1b[33m", " API is running on the default port.\n");
   }
 }
 
