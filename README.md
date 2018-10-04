@@ -1,4 +1,4 @@
-# ts-hapi-api
+# TS Hapi API
 
 ## Installation
 
