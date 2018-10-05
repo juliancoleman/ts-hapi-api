@@ -383,7 +383,7 @@ bluebird@^3.5.1, bluebird@^3.5.2:
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.2.tgz#1be0908e054a751754549c270489c1505d4ab15a"
   integrity sha512-dhHTWMI7kMx5whMQntl7Vr9C6BvV10lFXDAasnqnrMYhXVCzzk6IO9Fo2L75jXHT07WrOngL1WDXOp+yYS91Yg==
 
-boom@7.x.x, boom@^7.1.1:
+boom@7.x.x, boom@^7.1.1, boom@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/boom/-/boom-7.2.0.tgz#2bff24a55565767fde869ec808317eb10c48e966"
   integrity sha1-K/8kpVVldn/ehp7ICDF+sQxI6WY=
@@ -1166,6 +1166,13 @@ hapi-auth-jwt2@^8.1.0:
     boom "^7.1.1"
     cookie "^0.3.1"
     jsonwebtoken "^8.1.0"
+
+hapi-boom-decorators@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/hapi-boom-decorators/-/hapi-boom-decorators-4.1.1.tgz#d55c8ee8998b6f611e3165e3368f6558bb269b2f"
+  integrity sha512-StzxfyovDoeBkNItDaizV5Xo3QsCBSSYoe16QbjcpQ1/jiVhHcNs60U/f8yFSIThOlZUFfXswcV4u3d2hDoMLA==
+  dependencies:
+    boom "^7.2.0"
 
 hapi@^17.6.0:
   version "17.6.0"

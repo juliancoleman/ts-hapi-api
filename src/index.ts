@@ -1,6 +1,7 @@
 import * as hapiRouteAutoloader from "@juliancoleman/hapi-route-autoloader";
 import * as Hapi from "hapi";
 import * as hapiAuthJwt2 from "hapi-auth-jwt2";
+import * as hapiBoomDecorators from "hapi-boom-decorators";
 import * as Knex from "knex";
 import { Model } from "objection";
 import { defaultTo } from "ramda";
@@ -53,6 +54,7 @@ async function startServer() {
   try {
     await server.register([
       hapiAuthJwt2,
+      hapiBoomDecorators,
       hapiRouteAutoloader(`${__dirname}/controllers`),
       good,
     ])
