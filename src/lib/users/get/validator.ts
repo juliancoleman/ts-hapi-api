@@ -5,11 +5,11 @@ import * as Joi from "joi";
 // `pageSize` and `page` are attributes allowed by using
 // Objection.
 
-const singularValidator = Joi.object().keys({
+export const singularValidator = Joi.object().keys({
   userId: Joi.number().integer().positive().required(),
 }).unknown(false);
 
-const pluralValidator = Joi.object().keys({
+export const pluralValidator = Joi.object().keys({
   email_address: Joi.string().email(),
   pageSize: Joi.number().integer().positive().default(10),
   page: Joi.number().integer().positive().default(1),
