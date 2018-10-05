@@ -1,5 +1,14 @@
 // tslint:disable:max-line-length
-import * as jwt from "jsonwebtoken";
+import * as Bluebird from "bluebird";
+import * as jsonwebtoken from "jsonwebtoken";
+
+// http://bluebirdjs.com/docs/api/promise.promisifyall.html
+// Unfortunately, this needs to be of type `any` because
+// there are no type definitions for promisified
+// NodeFunctions. If you need to access the original type
+//  definitions, look at the signature without the `-Async`
+// suffix.
+const jwt: any = Bluebird.promisifyAll(jsonwebtoken);
 
 import User from "../../models/user";
 
@@ -22,18 +31,18 @@ export default class AuthenticationService {
 
     return jwt.sign(
       { accountId },
-      (process.env.JWT_KEY as jwt.Secret),
+      (process.env.JWT_KEY as jsonwebtoken.Secret),
       { expiresIn, algorithm }
     );
   }
 
   static refreshToken = async (token = "") => {
-    const decodedToken = await jwt.verify(token, process.env.JWT_KEY as string);
+    const decodedToken = await jwt.verifyAsync(token, process.env.JWT_KEY as string);
 
     if (!decodedToken) { return null; }
 
-    const { accountId } = decodedToken as IDecodedToken;
-    const user = await User // all model-returns need valid types other than `any`
+    const { accountId }: IDecodedToken = decodedToken;
+    const user: User = await User
       .query()
       .findById(accountId)
       .throwIfNotFound();
@@ -42,7 +51,7 @@ export default class AuthenticationService {
   }
 
   static validateToken = async ({ accountId }): Promise<IAuthenticationIsValid> => {
-    const user = await User
+    const user: User = await User
       .query()
       .findById(accountId);
 
@@ -54,7 +63,7 @@ export default class AuthenticationService {
   }
 
   static validateCredentials = async ({ email_address = "", password = "" }) => {
-    const user = await User
+    const user: User = await User
       .query()
       .where({ email_address })
       .throwIfNotFound();
