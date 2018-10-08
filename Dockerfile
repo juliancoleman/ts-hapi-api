@@ -15,7 +15,9 @@ LABEL author="Julian Coleman"
 LABEL appName="ts-hapi-api"
 LABEL appVersion="0.0.1"
 
-# Install Dockerize
+# Install Dockerize - we use this to attempt to
+# re-establish a connection to the database in case of a
+# possible connection failure.
 # https://github.com/jwilder/dockerize
 ENV DOCKERIZE_VERSION v0.6.1
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
@@ -39,7 +41,4 @@ ENV PORT=8912
 
 EXPOSE 8912
 
-# Build and run the server
-# RUN yarn build
-CMD yarn dev
-# CMD yarn build && yarn start
+CMD yarn start

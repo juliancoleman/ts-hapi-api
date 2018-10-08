@@ -1,5 +1,7 @@
 // tslint:disable:max-line-length
 
+require("dotenv").config({ path: "../../.env" });
+
 import { Config, PoolConfig, MigratorConfig } from "knex";
 import * as pg from "pg";
 
@@ -15,7 +17,11 @@ const migrations: Readonly<MigratorConfig> = {
   directory: "../migrations",
   disableTransactions: true,
 };
-const connection: string = `postgres://${process.env.DATABSE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_NAME}_db_1:5432`;
+
+// Do not set any defaults on these environment variables.
+// Let dotenv fail silently and let the database fail to
+// connect.
+const connection: string = `postgres://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}_db_1:5432`;
 
 module.exports = <Config> {
   client,

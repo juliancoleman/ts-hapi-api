@@ -11,6 +11,7 @@ import * as jsonwebtoken from "jsonwebtoken";
 const jwt: any = Bluebird.promisifyAll(jsonwebtoken);
 
 import User from "../../models/user";
+import { Readable } from "stream";
 
 interface IAuthenticationIsValid {
   isValid: boolean;
@@ -62,7 +63,7 @@ export default class AuthenticationService {
     return ({ isValid: true });
   }
 
-  static validateCredentials = async ({ email_address = "", password = "" }) => {
+  static validateCredentials = Bluebird.method(async ({ email_address = "", password = "" }) => {
     const user: User = await User
       .query()
       .where({ email_address })
@@ -77,5 +78,5 @@ export default class AuthenticationService {
 
         return user;
       });
-  }
+  });
 }
