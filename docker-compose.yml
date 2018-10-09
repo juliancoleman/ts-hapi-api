@@ -8,7 +8,9 @@ services:
     volumes:
       - .:/home
     env_file: .env
-    command: dockerize -wait tcp://db:5432 -timeout 90s yarn knex migrate:latest
+    command: >
+      bash -c "dockerize -wait tcp://db:5432 -timeout 90s yarn knex migrate:latest \
+      && yarn start"
   db:
     image: "postgres"
     env_file: .env
