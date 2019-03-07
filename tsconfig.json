@@ -1,21 +1,20 @@
 {
   "compilerOptions": {
+    "noEmit": true,
+    "rootDir": "src",
     "outDir": "build",
-    "target": "esnext",
-    "module": "none",
+    "target": "es6",
+    "module": "commonjs",
     "moduleResolution": "node",
-    "strictNullChecks": true,
-    "typeRoots": [
-      "./node_modules/@types",
-      "./typings",
-    ],
-    "removeComments": true
+    "declaration": true,
+    "inlineSourceMap": true
   },
   "include": [
-    "**/**.ts",
-    "test/**/**.ts"
+    "src/**/*.ts",
+    "./typings",
+    // "./index.ts"
   ],
   "exclude": [
-    "node_modules"
+    "src/**/*.spec.ts"
   ]
 }

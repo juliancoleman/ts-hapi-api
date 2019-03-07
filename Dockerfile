@@ -31,6 +31,7 @@ RUN useradd docker
 WORKDIR /home
 COPY . .
 RUN yarn --pure-lockfile
+RUN yarn build
 
 # Init project env variables and expose app port; NODE_ENV
 # is set to `production` here. Use `yarn dev` locally for
