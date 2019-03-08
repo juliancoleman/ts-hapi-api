@@ -30,8 +30,9 @@ RUN useradd docker
 # our `home` directory and install all project dependencies
 WORKDIR /home
 COPY . .
+RUN rm -rf node_modules
 RUN yarn --pure-lockfile
-RUN yarn build
+RUN npm rebuild --build-from-source
 
 # Init project env variables and expose app port; NODE_ENV
 # is set to `production` here. Use `yarn dev` locally for

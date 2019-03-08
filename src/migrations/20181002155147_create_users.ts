@@ -5,6 +5,8 @@ exports.up = (knex: Knex): Promise<any[]> => Promise.all([
     table.increments();
     table.string("email_address");
     table.string("password");
+    table.string("first_name");
+    table.string("last_name");
     table.timestamps();
     table.timestamp("deleted_at");
   }),
